@@ -1,0 +1,28 @@
+name: Build and Test BikeShopAPI
+
+on:
+  push:
+    branches: [ feature/patch-1 ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore src/BikeShopAPI/BikeShopAPI.sln
+
+      - name: Build
+        run: dotnet build src/BikeShopAPI/BikeShopAPI.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test src/BikeShopAPI/BikeShopAPI.sln --no-build --configuration Release --logger trx
