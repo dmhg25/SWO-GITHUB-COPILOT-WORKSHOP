@@ -22,7 +22,7 @@ content-type: application/json
 POST https://localhost:1903/api/bikeshop/1/bikes/1/takeRide/10
 
 ### Simulates a malfunction on the bike with ID 3 from the bike shop with ID 2
-POST https://localhost:1903/api/bikeshop/2/bikes/3/bikeMalfunction
+POST https://localhost:1903/api/bikeshop/1/bikes/1/bikeMalfunction
 
 ### Calculates the range of the bike with ID 4 from the bike shop with ID 2
 POST https://localhost:1903/api/bikeshop/2/bikes/4/calculateRange

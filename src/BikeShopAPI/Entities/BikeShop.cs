@@ -11,6 +11,14 @@
         public virtual List<Bike>? Bikes { get; set; }
         public ShopStatus Status { get; set; }
 
+        public string? ImageUrl { get; set; }
+
+        public string RideLogSignature { get; set; }
+
+        public RideLog Ridelog => RideLog.Parse(RideLogSignature);
+
+        public string BikeTrickSignature { get; set; }
+
         public Bike FindBikeById(int id)
         {
             return Bikes?.Find(b => b.Id == id);

@@ -34,5 +34,27 @@ namespace BikeShopAPI.Test.Controllers
             Assert.IsType<BikeShop>(result.Value);
         }
 
+        [Fact]
+        public void Create_AddsNewBikeShop()
+        {
+            var newShop = new BikeShop
+            {
+                Id = 99,
+                Name = "Test Shop",
+                Description = "A test shop.",
+                Category = "Test",
+                HasDelivery = false,
+                AddressId = 999,
+                Status = ShopStatus.Open,
+                Bikes = new List<Bike>()
+            };
+
+            var result = _controller.Create(newShop).Result as CreatedAtActionResult;
+            Assert.NotNull(result);
+            Assert.Equal(201, result.StatusCode);
+            var createdShop = Assert.IsType<BikeShop>(result.Value);
+            Assert.Equal("Test Shop", createdShop.Name);
+        }
+
     }
 }
